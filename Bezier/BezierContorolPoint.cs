@@ -12,6 +12,7 @@ namespace RGBToCMYKConvertor.Bezier
         public PointF position;
         public bool isSelected = false;
         public int r = 3;
+        public bool isFirstOrLast = false;
 
         public BezierContorolPoint(PointF pos)
         {
@@ -20,6 +21,10 @@ namespace RGBToCMYKConvertor.Bezier
 
         public void MoveTo(PointF newPosition)
         {
+            if (isFirstOrLast)
+            {
+                newPosition.X = position.X;
+            }
             position = newPosition;
         }
 

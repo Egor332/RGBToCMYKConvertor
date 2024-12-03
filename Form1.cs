@@ -1,4 +1,5 @@
 using RGBToCMYKConvertor.Bezier;
+using RGBToCMYKConvertor.Displays;
 using System.Windows.Forms;
 
 namespace RGBToCMYKConvertor
@@ -7,17 +8,19 @@ namespace RGBToCMYKConvertor
     {
         public Dictionary<string, BezierCurve> curves = new Dictionary<string, BezierCurve>();
         private BezierContorolPoint? _selectedControlPoint = null;
+        public ImageBase imageBase;
         public Form1()
         {
             InitializeComponent();
-            BezierCurve cyanCurve = new BezierCurve(new PointF[] { new PointF(0, 0), new PointF(50, 100), new PointF(100, 150), new PointF(150, 150) }, Brushes.Cyan);
-            BezierCurve magentaCurve = new BezierCurve(new PointF[] { new PointF(0, 0), new PointF(50, 50), new PointF(80, 150), new PointF(150, 170) }, Brushes.Magenta);
-            BezierCurve yellowCurve = new BezierCurve(new PointF[] { new PointF(0, 0), new PointF(30, 70), new PointF(70, 120), new PointF(150, 130) }, Brushes.Yellow);
-            BezierCurve blackCurve = new BezierCurve(new PointF[] { new PointF(0, 0), new PointF(40, 20), new PointF(100, 80), new PointF(150, 100) }, Brushes.Black);
+            BezierCurve cyanCurve = new BezierCurve(new PointF[] { new PointF(0, 0), new PointF(50, 100), new PointF(100, 150), new PointF(385, 150) }, Brushes.Cyan);
+            BezierCurve magentaCurve = new BezierCurve(new PointF[] { new PointF(0, 0), new PointF(50, 50), new PointF(80, 150), new PointF(385, 170) }, Brushes.Magenta);
+            BezierCurve yellowCurve = new BezierCurve(new PointF[] { new PointF(0, 0), new PointF(30, 70), new PointF(70, 120), new PointF(385, 130) }, Brushes.Yellow);
+            BezierCurve blackCurve = new BezierCurve(new PointF[] { new PointF(0, 0), new PointF(40, 20), new PointF(100, 80), new PointF(385, 100) }, Brushes.Black);            
             curves.Add(cyanRadioButton.Text, cyanCurve);
             curves.Add(magentaRadioButton.Text, magentaCurve);
             curves.Add(yellowRadioButton.Text, yellowCurve);
             curves.Add(blackRadioButton.Text, blackCurve);
+            imageBase = new ImageBase("images/Mount_Hood.jpg", curves);
 
 
         }
@@ -99,6 +102,53 @@ namespace RGBToCMYKConvertor
         private void allCurvesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             curvePictureBox.Invalidate();
+        }
+
+        private void changeButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            DialogResult dlgResult = dlg.ShowDialog();
+            string filename;
+            if (dlgResult == DialogResult.OK)
+            {
+                filename = dlg.FileName;
+                imageBase = new ImageBase(filename, curves);
+            }
+            InvalidateImages();
+        }
+
+        private void originalPictureBox_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(imageBase.original, new Rectangle(0, 0, originalPictureBox.Width, originalPictureBox.Height));
+        }
+
+        private void InvalidateImages()
+        {
+            originalPictureBox.Invalidate();
+            cyanPictureBox.Invalidate();
+            magentaPictureBox.Invalidate();
+            yellowPictureBox.Invalidate();
+            blackPictureBox.Invalidate();
+        }
+
+        private void cyanPictureBox_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(imageBase.cyan, new Rectangle(0, 0, originalPictureBox.Width, originalPictureBox.Height));
+        }
+
+        private void magentaPictureBox_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(imageBase.magenta, new Rectangle(0, 0, originalPictureBox.Width, originalPictureBox.Height));
+        }
+
+        private void yellowPictureBox_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(imageBase.yellow, new Rectangle(0, 0, originalPictureBox.Width, originalPictureBox.Height));
+        }
+
+        private void blackPictureBox_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(imageBase.black, new Rectangle(0, 0, originalPictureBox.Width, originalPictureBox.Height));
         }
     }
 }

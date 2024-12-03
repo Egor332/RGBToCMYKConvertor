@@ -43,11 +43,22 @@
             saveCurveButton = new Button();
             loadCurveButton = new Button();
             savePicturesButton = new Button();
+            originalPictureBox = new PictureBox();
+            cyanPictureBox = new PictureBox();
+            magentaPictureBox = new PictureBox();
+            yellowPictureBox = new PictureBox();
+            blackPictureBox = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)curvePictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)originalPictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cyanPictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)magentaPictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)yellowPictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)blackPictureBox).BeginInit();
             SuspendLayout();
             // 
             // curvePictureBox
             // 
+            curvePictureBox.BackColor = SystemColors.ControlLight;
             curvePictureBox.Location = new Point(12, 12);
             curvePictureBox.Name = "curvePictureBox";
             curvePictureBox.Size = new Size(385, 385);
@@ -169,6 +180,7 @@
             changeButton.TabIndex = 11;
             changeButton.Text = "Change picture";
             changeButton.UseVisualStyleBackColor = true;
+            changeButton.Click += changeButton_Click;
             // 
             // saveCurveButton
             // 
@@ -197,11 +209,61 @@
             savePicturesButton.Text = "Save pictures";
             savePicturesButton.UseVisualStyleBackColor = true;
             // 
+            // originalPictureBox
+            // 
+            originalPictureBox.Location = new Point(421, 12);
+            originalPictureBox.Name = "originalPictureBox";
+            originalPictureBox.Size = new Size(290, 180);
+            originalPictureBox.TabIndex = 16;
+            originalPictureBox.TabStop = false;
+            originalPictureBox.Paint += originalPictureBox_Paint;
+            // 
+            // cyanPictureBox
+            // 
+            cyanPictureBox.Location = new Point(421, 215);
+            cyanPictureBox.Name = "cyanPictureBox";
+            cyanPictureBox.Size = new Size(290, 180);
+            cyanPictureBox.TabIndex = 17;
+            cyanPictureBox.TabStop = false;
+            cyanPictureBox.Paint += cyanPictureBox_Paint;
+            // 
+            // magentaPictureBox
+            // 
+            magentaPictureBox.Location = new Point(717, 215);
+            magentaPictureBox.Name = "magentaPictureBox";
+            magentaPictureBox.Size = new Size(290, 180);
+            magentaPictureBox.TabIndex = 18;
+            magentaPictureBox.TabStop = false;
+            magentaPictureBox.Paint += magentaPictureBox_Paint;
+            // 
+            // yellowPictureBox
+            // 
+            yellowPictureBox.Location = new Point(421, 403);
+            yellowPictureBox.Name = "yellowPictureBox";
+            yellowPictureBox.Size = new Size(290, 180);
+            yellowPictureBox.TabIndex = 19;
+            yellowPictureBox.TabStop = false;
+            yellowPictureBox.Paint += yellowPictureBox_Paint;
+            // 
+            // blackPictureBox
+            // 
+            blackPictureBox.Location = new Point(717, 403);
+            blackPictureBox.Name = "blackPictureBox";
+            blackPictureBox.Size = new Size(290, 180);
+            blackPictureBox.TabIndex = 20;
+            blackPictureBox.TabStop = false;
+            blackPictureBox.Paint += blackPictureBox_Paint;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1093, 610);
+            Controls.Add(blackPictureBox);
+            Controls.Add(yellowPictureBox);
+            Controls.Add(magentaPictureBox);
+            Controls.Add(cyanPictureBox);
+            Controls.Add(originalPictureBox);
             Controls.Add(savePicturesButton);
             Controls.Add(loadCurveButton);
             Controls.Add(saveCurveButton);
@@ -220,6 +282,11 @@
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)curvePictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)originalPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cyanPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)magentaPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)yellowPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)blackPictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -241,5 +308,10 @@
         private Button saveCurveButton;
         private Button loadCurveButton;
         private Button savePicturesButton;
+        private PictureBox originalPictureBox;
+        private PictureBox cyanPictureBox;
+        private PictureBox magentaPictureBox;
+        private PictureBox yellowPictureBox;
+        private PictureBox blackPictureBox;
     }
 }
