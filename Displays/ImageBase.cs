@@ -54,7 +54,7 @@ namespace RGBToCMYKConvertor.Displays
             {
                 cmykColor.W = (cmykColor.X > cmykColor.Z) ? cmykColor.Z : cmykColor.X;
             }
-            //cmykColor = RecountCMYK(cmykColor);
+            cmykColor = RecountCMYK(cmykColor);
 
             Vector4 cmykCyan = new Vector4(cmykColor.X, 0, 0, 0);
             Vector4 cmykMagenta = new Vector4(0, cmykColor.Y, 0, 0);
@@ -70,16 +70,20 @@ namespace RGBToCMYKConvertor.Displays
         private Vector4 RecountCMYK(Vector4 cmyk)
         {
             Vector4 newCMYK = cmyk;
-            int indK = (int)Math.Round((double)(1f / cmyk.W));
-            newCMYK.X = cmyk.X - cmyk.W + curves["Cyan"].yValues[indK];
-            newCMYK.Y = cmyk.Y - cmyk.W + curves["Magenta"].yValues[indK];
-            newCMYK.Z = cmyk.Z - cmyk.W + curves["Yellow"].yValues[indK];
-            newCMYK.W = curves["Black"].yValues[indK];
+            int indK = (int)Math.Round((double)(cmyk.W * 255));
+            newCMYK.X = cmyk.X - cmyk.W + (curves["Cyan"].yValues[indK] / 255f);
+            newCMYK.Y = cmyk.Y - cmyk.W + (curves["Magenta"].yValues[indK] / 255f);
+            newCMYK.Z = cmyk.Z - cmyk.W + (curves["Yellow"].yValues[indK] / 255f);
+            newCMYK.W = curves["Black"].yValues[indK] / 255f;
             return newCMYK;
         }
 
         private Color CMYK2RGB(Vector4 cmyk)
         {
+            cmyk.X = cmyk.X > 1 ? 1 : cmyk.X;
+            cmyk.Y = cmyk.Y > 1 ? 1 : cmyk.Y;
+            cmyk.Z = cmyk.Z > 1 ? 1 : cmyk.Z;
+            cmyk.W = cmyk.W > 1 ? 1 : cmyk.W;
             Color rgb = Color.FromArgb((int)(255 * (1 - cmyk.X) * (1 - cmyk.W)),
                 (int)(255 * (1 - cmyk.Y) * (1 - cmyk.W)),
                 (int)(255 * (1 - cmyk.Z) * (1 - cmyk.W)));

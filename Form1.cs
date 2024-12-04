@@ -1,4 +1,5 @@
 using RGBToCMYKConvertor.Bezier;
+using RGBToCMYKConvertor.DataManagers;
 using RGBToCMYKConvertor.Displays;
 using System.Windows.Forms;
 
@@ -7,15 +8,15 @@ namespace RGBToCMYKConvertor
     public partial class Form1 : Form
     {
         public Dictionary<string, BezierCurve> curves = new Dictionary<string, BezierCurve>();
-        private BezierContorolPoint? _selectedControlPoint = null;
+        private BezierControlPoint? _selectedControlPoint = null;
         public ImageBase imageBase;
         public Form1()
         {
             InitializeComponent();
-            BezierCurve cyanCurve = new BezierCurve(new PointF[] { new PointF(0, 0), new PointF(50, 100), new PointF(100, 150), new PointF(385, 150) }, Brushes.Cyan);
-            BezierCurve magentaCurve = new BezierCurve(new PointF[] { new PointF(0, 0), new PointF(50, 50), new PointF(80, 150), new PointF(385, 170) }, Brushes.Magenta);
-            BezierCurve yellowCurve = new BezierCurve(new PointF[] { new PointF(0, 0), new PointF(30, 70), new PointF(70, 120), new PointF(385, 130) }, Brushes.Yellow);
-            BezierCurve blackCurve = new BezierCurve(new PointF[] { new PointF(0, 0), new PointF(40, 20), new PointF(100, 80), new PointF(385, 100) }, Brushes.Black);            
+            BezierCurve cyanCurve = new BezierCurve(new PointF[] { new PointF(0, 0), new PointF(50, 100), new PointF(100, 150), new PointF(255, 150) }, Brushes.Cyan);
+            BezierCurve magentaCurve = new BezierCurve(new PointF[] { new PointF(0, 0), new PointF(50, 50), new PointF(80, 150), new PointF(255, 170) }, Brushes.Magenta);
+            BezierCurve yellowCurve = new BezierCurve(new PointF[] { new PointF(0, 0), new PointF(30, 70), new PointF(70, 120), new PointF(255, 130) }, Brushes.Yellow);
+            BezierCurve blackCurve = new BezierCurve(new PointF[] { new PointF(0, 0), new PointF(40, 20), new PointF(100, 80), new PointF(255, 100) }, Brushes.Black);
             curves.Add(cyanRadioButton.Text, cyanCurve);
             curves.Add(magentaRadioButton.Text, magentaCurve);
             curves.Add(yellowRadioButton.Text, yellowCurve);
@@ -53,6 +54,7 @@ namespace RGBToCMYKConvertor
                 {
                     _selectedControlPoint.isSelected = false;
                     _selectedControlPoint = null;
+                    InvalidateImages();
                 }
                 else
                 {
@@ -122,8 +124,18 @@ namespace RGBToCMYKConvertor
             e.Graphics.DrawImage(imageBase.original, new Rectangle(0, 0, originalPictureBox.Width, originalPictureBox.Height));
         }
 
+        private void OverwriteAll()
+        {
+            foreach (BezierCurve curve in curves.Values)
+            {
+                curve.OverwriteYTable();
+            }
+            imageBase.ResetBitmaps();
+        }
+
         private void InvalidateImages()
         {
+            OverwriteAll();
             originalPictureBox.Invalidate();
             cyanPictureBox.Invalidate();
             magentaPictureBox.Invalidate();
@@ -149,6 +161,73 @@ namespace RGBToCMYKConvertor
         private void blackPictureBox_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawImage(imageBase.black, new Rectangle(0, 0, originalPictureBox.Width, originalPictureBox.Height));
+        }
+
+        private void saveCurveButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Title = "Specify a file",
+                Filter = "Text Files (*.txt)|*.txt"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = saveFileDialog.FileName;
+                MessageBox.Show($"Selected file: {fileName}");
+                Transformer transformer = new Transformer();
+                transformer.SaveCurves(curves.Values.ToList(), fileName);
+
+            }
+            curvePictureBox.Invalidate();
+            InvalidateImages();
+        }
+
+        private void loadCurveButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            DialogResult dlgResult = dlg.ShowDialog();
+            string filename;
+            if (dlgResult == DialogResult.OK)
+            {
+                filename = dlg.FileName;
+                Transformer transformer = new Transformer();
+                transformer.LoadCurves(curves.Values.ToList<BezierCurve>(), filename);
+            }
+            curvePictureBox.Invalidate();
+            InvalidateImages();
+        }
+
+        private void reduction0Button_Click(object sender, EventArgs e)
+        {
+            Transformer transformer = new Transformer();
+            transformer.LoadCurves(curves.Values.ToList<BezierCurve>(), "curves/0reduction.txt");
+            curvePictureBox.Invalidate();
+            InvalidateImages();
+        }
+
+        private void reduction100Button_Click(object sender, EventArgs e)
+        {
+            Transformer transformer = new Transformer();
+            transformer.LoadCurves(curves.Values.ToList<BezierCurve>(), "curves/100reduction.txt");
+            curvePictureBox.Invalidate();
+            InvalidateImages();
+        }
+
+        private void UCRButton_Click(object sender, EventArgs e)
+        {
+            Transformer transformer = new Transformer();
+            transformer.LoadCurves(curves.Values.ToList<BezierCurve>(), "curves/UCR.txt");
+            curvePictureBox.Invalidate();
+            InvalidateImages();
+        }
+
+        private void GCRButton_Click(object sender, EventArgs e)
+        {
+            Transformer transformer = new Transformer();
+            transformer.LoadCurves(curves.Values.ToList<BezierCurve>(), "curves/GCR.txt");
+            curvePictureBox.Invalidate();
+            InvalidateImages();
         }
     }
 }

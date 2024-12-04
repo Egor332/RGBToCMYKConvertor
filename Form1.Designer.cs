@@ -135,6 +135,7 @@
             reduction0Button.TabIndex = 6;
             reduction0Button.Text = "0% reduction";
             reduction0Button.UseVisualStyleBackColor = true;
+            reduction0Button.Click += reduction0Button_Click;
             // 
             // reduction100Button
             // 
@@ -144,6 +145,7 @@
             reduction100Button.TabIndex = 7;
             reduction100Button.Text = "100% reduction";
             reduction100Button.UseVisualStyleBackColor = true;
+            reduction100Button.Click += reduction100Button_Click;
             // 
             // UCRButton
             // 
@@ -153,6 +155,7 @@
             UCRButton.TabIndex = 8;
             UCRButton.Text = "UCR";
             UCRButton.UseVisualStyleBackColor = true;
+            UCRButton.Click += UCRButton_Click;
             // 
             // GCRButton
             // 
@@ -162,6 +165,7 @@
             GCRButton.TabIndex = 9;
             GCRButton.Text = "GCR";
             GCRButton.UseVisualStyleBackColor = true;
+            GCRButton.Click += GCRButton_Click;
             // 
             // showAllPicturesButton
             // 
@@ -188,8 +192,9 @@
             saveCurveButton.Name = "saveCurveButton";
             saveCurveButton.Size = new Size(111, 23);
             saveCurveButton.TabIndex = 12;
-            saveCurveButton.Text = "Save  curve";
+            saveCurveButton.Text = "Save  curves";
             saveCurveButton.UseVisualStyleBackColor = true;
+            saveCurveButton.Click += saveCurveButton_Click;
             // 
             // loadCurveButton
             // 
@@ -197,8 +202,9 @@
             loadCurveButton.Name = "loadCurveButton";
             loadCurveButton.Size = new Size(111, 23);
             loadCurveButton.TabIndex = 13;
-            loadCurveButton.Text = "Load curve";
+            loadCurveButton.Text = "Load curves";
             loadCurveButton.UseVisualStyleBackColor = true;
+            loadCurveButton.Click += loadCurveButton_Click;
             // 
             // savePicturesButton
             // 

@@ -9,7 +9,7 @@ namespace RGBToCMYKConvertor.Bezier
 {
     public class BezierCurve
     {
-        public BezierContorolPoint[] bezierContorolPoints;
+        public BezierControlPoint[] bezierContorolPoints;
 
         private Pen _pen;
 
@@ -17,23 +17,36 @@ namespace RGBToCMYKConvertor.Bezier
 
         public BezierCurve(PointF[] givenPoints, Brush brush)
         {
-            bezierContorolPoints = new BezierContorolPoint[4];
+            bezierContorolPoints = new BezierControlPoint[4];
             _pen = new Pen(brush);
             
             for (int i = 0; i < 4; i++)
             {
-                bezierContorolPoints[i] = new BezierContorolPoint(givenPoints[i]);
+                bezierContorolPoints[i] = new BezierControlPoint(givenPoints[i]);
             }
             bezierContorolPoints[0].isFirstOrLast = true;
             bezierContorolPoints[3].isFirstOrLast = true;
             yValues = new float[256];
+            OverwriteYTable();
         }
+
+        public void ResetCurve(List<BezierControlPoint> givenPoints)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                bezierContorolPoints[i] = givenPoints[i];
+            }
+            bezierContorolPoints[0].isFirstOrLast = true;
+            bezierContorolPoints[3].isFirstOrLast = true;
+            yValues = new float[256];
+            OverwriteYTable();
+        }
+
 
         public void DrawCurve(Graphics g)
         {
             g.DrawBezier(_pen, bezierContorolPoints[0].position, bezierContorolPoints[1].position, 
                 bezierContorolPoints[2].position, bezierContorolPoints[3].position);
-            OverwriteYTable(g);
         }
 
         public void DrawControlPoints(Graphics g)
@@ -44,9 +57,9 @@ namespace RGBToCMYKConvertor.Bezier
             }
         }
 
-        public BezierContorolPoint? CheckControlPointClicked(PointF p)
+        public BezierControlPoint? CheckControlPointClicked(PointF p)
         {
-            BezierContorolPoint? contorolPoint = null;
+            BezierControlPoint? contorolPoint = null;
             foreach(var controlPoint in bezierContorolPoints)
             {
                 if (controlPoint.CheckIsInArea(p)) return controlPoint;
@@ -55,10 +68,10 @@ namespace RGBToCMYKConvertor.Bezier
             return null;
         }
 
-        public void OverwriteYTable(Graphics g)
+        public void OverwriteYTable()
         {
             int ind = 0;
-            for (float targetX = 0f; targetX < 1f; targetX += 1f/255f)
+            for (float targetX = 0f; targetX < 255f; targetX += 1f)
             {
                 float tLow = 0f;
                 float tHigh = 1f;
@@ -87,7 +100,7 @@ namespace RGBToCMYKConvertor.Bezier
                     y += bezierContorolPoints[k].position.Y * bernstain3Y[k];
                 }
                 yValues[ind] = y;
-                g.FillEllipse(new SolidBrush(Color.Green), x*385, y*385, 2, 2);
+                ind++;
             }
 
         }

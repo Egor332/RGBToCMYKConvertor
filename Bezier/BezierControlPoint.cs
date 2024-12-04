@@ -7,20 +7,29 @@ using System.Threading.Tasks;
 
 namespace RGBToCMYKConvertor.Bezier
 {
-    public class BezierContorolPoint
+    public class BezierControlPoint
     {
         public PointF position;
         public bool isSelected = false;
         public int r = 3;
         public bool isFirstOrLast = false;
 
-        public BezierContorolPoint(PointF pos)
+        public BezierControlPoint(PointF pos)
         {
             this.position = pos;
         }
 
+        public BezierControlPoint(string coordinates)
+        {
+            string[] numbers = coordinates.Split(',', ';');
+            position.X = float.Parse(numbers[0]);
+            position.Y = float.Parse(numbers[1]);
+        }
+
         public void MoveTo(PointF newPosition)
         {
+            if (newPosition.Y > 255) { newPosition.Y = 255; }
+            if (newPosition.X > 255) { newPosition.X = 255; }
             if (isFirstOrLast)
             {
                 newPosition.X = position.X;
