@@ -229,5 +229,22 @@ namespace RGBToCMYKConvertor
             curvePictureBox.Invalidate();
             InvalidateImages();
         }
+
+        private void savePicturesButton_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog folderBrowser = new FolderBrowserDialog())
+            {
+                folderBrowser.Description = "Select a folder to save files, it is better to create new directory";
+                folderBrowser.ShowNewFolderButton = true; // Allow users to create a new folder if needed
+
+                if (folderBrowser.ShowDialog() == DialogResult.OK)
+                {
+                    string selectedPath = folderBrowser.SelectedPath;
+
+
+                    imageBase.SaveAll(selectedPath);
+                }
+            }
+        }
     }
 }

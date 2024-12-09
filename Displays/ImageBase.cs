@@ -90,6 +90,20 @@ namespace RGBToCMYKConvertor.Displays
             return rgb;
 
         }
+
+        public void SaveAll(string selectedPath)
+        {
+            string original = System.IO.Path.Combine(selectedPath, "original.jpg");
+            string cyan = System.IO.Path.Combine(selectedPath, "cyan.jpg");
+            string magenta = System.IO.Path.Combine(selectedPath, "magenta.jpg");
+            string yellow = System.IO.Path.Combine(selectedPath, "yellow.jpg");
+            string black = System.IO.Path.Combine(selectedPath, "black.jpg");
+            this.original.Save(original);
+            this.cyan.Save(cyan);
+            this.magenta.Save(magenta);
+            this.yellow.Save(yellow);
+            this.black.Save(black);
+        }
         
     }
 }

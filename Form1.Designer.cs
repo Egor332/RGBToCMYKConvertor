@@ -38,7 +38,6 @@
             reduction100Button = new Button();
             UCRButton = new Button();
             GCRButton = new Button();
-            showAllPicturesButton = new Button();
             changeButton = new Button();
             saveCurveButton = new Button();
             loadCurveButton = new Button();
@@ -59,9 +58,10 @@
             // curvePictureBox
             // 
             curvePictureBox.BackColor = SystemColors.ControlLight;
-            curvePictureBox.Location = new Point(12, 12);
+            curvePictureBox.Location = new Point(14, 16);
+            curvePictureBox.Margin = new Padding(3, 4, 3, 4);
             curvePictureBox.Name = "curvePictureBox";
-            curvePictureBox.Size = new Size(385, 385);
+            curvePictureBox.Size = new Size(440, 513);
             curvePictureBox.TabIndex = 0;
             curvePictureBox.TabStop = false;
             curvePictureBox.Paint += curvePictureBox_Paint;
@@ -71,9 +71,10 @@
             // cyanRadioButton
             // 
             cyanRadioButton.AutoSize = true;
-            cyanRadioButton.Location = new Point(12, 403);
+            cyanRadioButton.Location = new Point(14, 537);
+            cyanRadioButton.Margin = new Padding(3, 4, 3, 4);
             cyanRadioButton.Name = "cyanRadioButton";
-            cyanRadioButton.Size = new Size(52, 19);
+            cyanRadioButton.Size = new Size(62, 24);
             cyanRadioButton.TabIndex = 1;
             cyanRadioButton.TabStop = true;
             cyanRadioButton.Text = "Cyan";
@@ -83,9 +84,10 @@
             // magentaRadioButton
             // 
             magentaRadioButton.AutoSize = true;
-            magentaRadioButton.Location = new Point(12, 428);
+            magentaRadioButton.Location = new Point(14, 571);
+            magentaRadioButton.Margin = new Padding(3, 4, 3, 4);
             magentaRadioButton.Name = "magentaRadioButton";
-            magentaRadioButton.Size = new Size(72, 19);
+            magentaRadioButton.Size = new Size(89, 24);
             magentaRadioButton.TabIndex = 2;
             magentaRadioButton.TabStop = true;
             magentaRadioButton.Text = "Magenta";
@@ -95,9 +97,10 @@
             // yellowRadioButton
             // 
             yellowRadioButton.AutoSize = true;
-            yellowRadioButton.Location = new Point(12, 453);
+            yellowRadioButton.Location = new Point(14, 604);
+            yellowRadioButton.Margin = new Padding(3, 4, 3, 4);
             yellowRadioButton.Name = "yellowRadioButton";
-            yellowRadioButton.Size = new Size(59, 19);
+            yellowRadioButton.Size = new Size(73, 24);
             yellowRadioButton.TabIndex = 3;
             yellowRadioButton.TabStop = true;
             yellowRadioButton.Text = "Yellow";
@@ -107,9 +110,10 @@
             // blackRadioButton
             // 
             blackRadioButton.AutoSize = true;
-            blackRadioButton.Location = new Point(12, 478);
+            blackRadioButton.Location = new Point(14, 637);
+            blackRadioButton.Margin = new Padding(3, 4, 3, 4);
             blackRadioButton.Name = "blackRadioButton";
-            blackRadioButton.Size = new Size(53, 19);
+            blackRadioButton.Size = new Size(65, 24);
             blackRadioButton.TabIndex = 4;
             blackRadioButton.TabStop = true;
             blackRadioButton.Text = "Black";
@@ -119,9 +123,10 @@
             // allCurvesCheckBox
             // 
             allCurvesCheckBox.AutoSize = true;
-            allCurvesCheckBox.Location = new Point(12, 503);
+            allCurvesCheckBox.Location = new Point(14, 671);
+            allCurvesCheckBox.Margin = new Padding(3, 4, 3, 4);
             allCurvesCheckBox.Name = "allCurvesCheckBox";
-            allCurvesCheckBox.Size = new Size(107, 19);
+            allCurvesCheckBox.Size = new Size(132, 24);
             allCurvesCheckBox.TabIndex = 5;
             allCurvesCheckBox.Text = "Show all curves";
             allCurvesCheckBox.UseVisualStyleBackColor = true;
@@ -129,9 +134,10 @@
             // 
             // reduction0Button
             // 
-            reduction0Button.Location = new Point(150, 403);
+            reduction0Button.Location = new Point(171, 537);
+            reduction0Button.Margin = new Padding(3, 4, 3, 4);
             reduction0Button.Name = "reduction0Button";
-            reduction0Button.Size = new Size(110, 23);
+            reduction0Button.Size = new Size(126, 31);
             reduction0Button.TabIndex = 6;
             reduction0Button.Text = "0% reduction";
             reduction0Button.UseVisualStyleBackColor = true;
@@ -139,9 +145,10 @@
             // 
             // reduction100Button
             // 
-            reduction100Button.Location = new Point(150, 432);
+            reduction100Button.Location = new Point(171, 576);
+            reduction100Button.Margin = new Padding(3, 4, 3, 4);
             reduction100Button.Name = "reduction100Button";
-            reduction100Button.Size = new Size(110, 23);
+            reduction100Button.Size = new Size(126, 31);
             reduction100Button.TabIndex = 7;
             reduction100Button.Text = "100% reduction";
             reduction100Button.UseVisualStyleBackColor = true;
@@ -149,9 +156,10 @@
             // 
             // UCRButton
             // 
-            UCRButton.Location = new Point(150, 461);
+            UCRButton.Location = new Point(171, 615);
+            UCRButton.Margin = new Padding(3, 4, 3, 4);
             UCRButton.Name = "UCRButton";
-            UCRButton.Size = new Size(110, 23);
+            UCRButton.Size = new Size(126, 31);
             UCRButton.TabIndex = 8;
             UCRButton.Text = "UCR";
             UCRButton.UseVisualStyleBackColor = true;
@@ -159,28 +167,21 @@
             // 
             // GCRButton
             // 
-            GCRButton.Location = new Point(150, 490);
+            GCRButton.Location = new Point(171, 653);
+            GCRButton.Margin = new Padding(3, 4, 3, 4);
             GCRButton.Name = "GCRButton";
-            GCRButton.Size = new Size(110, 23);
+            GCRButton.Size = new Size(126, 31);
             GCRButton.TabIndex = 9;
             GCRButton.Text = "GCR";
             GCRButton.UseVisualStyleBackColor = true;
             GCRButton.Click += GCRButton_Click;
             // 
-            // showAllPicturesButton
-            // 
-            showAllPicturesButton.Location = new Point(266, 403);
-            showAllPicturesButton.Name = "showAllPicturesButton";
-            showAllPicturesButton.Size = new Size(111, 23);
-            showAllPicturesButton.TabIndex = 10;
-            showAllPicturesButton.Text = "Show all pictures";
-            showAllPicturesButton.UseVisualStyleBackColor = true;
-            // 
             // changeButton
             // 
-            changeButton.Location = new Point(266, 432);
+            changeButton.Location = new Point(304, 576);
+            changeButton.Margin = new Padding(3, 4, 3, 4);
             changeButton.Name = "changeButton";
-            changeButton.Size = new Size(111, 23);
+            changeButton.Size = new Size(127, 31);
             changeButton.TabIndex = 11;
             changeButton.Text = "Change picture";
             changeButton.UseVisualStyleBackColor = true;
@@ -188,9 +189,10 @@
             // 
             // saveCurveButton
             // 
-            saveCurveButton.Location = new Point(266, 461);
+            saveCurveButton.Location = new Point(304, 615);
+            saveCurveButton.Margin = new Padding(3, 4, 3, 4);
             saveCurveButton.Name = "saveCurveButton";
-            saveCurveButton.Size = new Size(111, 23);
+            saveCurveButton.Size = new Size(127, 31);
             saveCurveButton.TabIndex = 12;
             saveCurveButton.Text = "Save  curves";
             saveCurveButton.UseVisualStyleBackColor = true;
@@ -198,9 +200,10 @@
             // 
             // loadCurveButton
             // 
-            loadCurveButton.Location = new Point(266, 490);
+            loadCurveButton.Location = new Point(304, 653);
+            loadCurveButton.Margin = new Padding(3, 4, 3, 4);
             loadCurveButton.Name = "loadCurveButton";
-            loadCurveButton.Size = new Size(111, 23);
+            loadCurveButton.Size = new Size(127, 31);
             loadCurveButton.TabIndex = 13;
             loadCurveButton.Text = "Load curves";
             loadCurveButton.UseVisualStyleBackColor = true;
@@ -208,63 +211,70 @@
             // 
             // savePicturesButton
             // 
-            savePicturesButton.Location = new Point(150, 535);
+            savePicturesButton.Location = new Point(171, 713);
+            savePicturesButton.Margin = new Padding(3, 4, 3, 4);
             savePicturesButton.Name = "savePicturesButton";
-            savePicturesButton.Size = new Size(75, 63);
+            savePicturesButton.Size = new Size(86, 84);
             savePicturesButton.TabIndex = 15;
             savePicturesButton.Text = "Save pictures";
             savePicturesButton.UseVisualStyleBackColor = true;
+            savePicturesButton.Click += savePicturesButton_Click;
             // 
             // originalPictureBox
             // 
-            originalPictureBox.Location = new Point(421, 12);
+            originalPictureBox.Location = new Point(481, 16);
+            originalPictureBox.Margin = new Padding(3, 4, 3, 4);
             originalPictureBox.Name = "originalPictureBox";
-            originalPictureBox.Size = new Size(290, 180);
+            originalPictureBox.Size = new Size(331, 240);
             originalPictureBox.TabIndex = 16;
             originalPictureBox.TabStop = false;
             originalPictureBox.Paint += originalPictureBox_Paint;
             // 
             // cyanPictureBox
             // 
-            cyanPictureBox.Location = new Point(421, 215);
+            cyanPictureBox.Location = new Point(481, 287);
+            cyanPictureBox.Margin = new Padding(3, 4, 3, 4);
             cyanPictureBox.Name = "cyanPictureBox";
-            cyanPictureBox.Size = new Size(290, 180);
+            cyanPictureBox.Size = new Size(331, 240);
             cyanPictureBox.TabIndex = 17;
             cyanPictureBox.TabStop = false;
             cyanPictureBox.Paint += cyanPictureBox_Paint;
             // 
             // magentaPictureBox
             // 
-            magentaPictureBox.Location = new Point(717, 215);
+            magentaPictureBox.Location = new Point(819, 287);
+            magentaPictureBox.Margin = new Padding(3, 4, 3, 4);
             magentaPictureBox.Name = "magentaPictureBox";
-            magentaPictureBox.Size = new Size(290, 180);
+            magentaPictureBox.Size = new Size(331, 240);
             magentaPictureBox.TabIndex = 18;
             magentaPictureBox.TabStop = false;
             magentaPictureBox.Paint += magentaPictureBox_Paint;
             // 
             // yellowPictureBox
             // 
-            yellowPictureBox.Location = new Point(421, 403);
+            yellowPictureBox.Location = new Point(481, 537);
+            yellowPictureBox.Margin = new Padding(3, 4, 3, 4);
             yellowPictureBox.Name = "yellowPictureBox";
-            yellowPictureBox.Size = new Size(290, 180);
+            yellowPictureBox.Size = new Size(331, 240);
             yellowPictureBox.TabIndex = 19;
             yellowPictureBox.TabStop = false;
             yellowPictureBox.Paint += yellowPictureBox_Paint;
             // 
             // blackPictureBox
             // 
-            blackPictureBox.Location = new Point(717, 403);
+            blackPictureBox.Location = new Point(819, 537);
+            blackPictureBox.Margin = new Padding(3, 4, 3, 4);
             blackPictureBox.Name = "blackPictureBox";
-            blackPictureBox.Size = new Size(290, 180);
+            blackPictureBox.Size = new Size(331, 240);
             blackPictureBox.TabIndex = 20;
             blackPictureBox.TabStop = false;
             blackPictureBox.Paint += blackPictureBox_Paint;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1093, 610);
+            ClientSize = new Size(1249, 813);
             Controls.Add(blackPictureBox);
             Controls.Add(yellowPictureBox);
             Controls.Add(magentaPictureBox);
@@ -274,7 +284,6 @@
             Controls.Add(loadCurveButton);
             Controls.Add(saveCurveButton);
             Controls.Add(changeButton);
-            Controls.Add(showAllPicturesButton);
             Controls.Add(GCRButton);
             Controls.Add(UCRButton);
             Controls.Add(reduction100Button);
@@ -285,6 +294,7 @@
             Controls.Add(magentaRadioButton);
             Controls.Add(cyanRadioButton);
             Controls.Add(curvePictureBox);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)curvePictureBox).EndInit();
@@ -309,7 +319,6 @@
         private Button reduction100Button;
         private Button UCRButton;
         private Button GCRButton;
-        private Button showAllPicturesButton;
         private Button changeButton;
         private Button saveCurveButton;
         private Button loadCurveButton;
