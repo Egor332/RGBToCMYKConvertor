@@ -71,7 +71,7 @@ namespace RGBToCMYKConvertor.Bezier
         public void OverwriteYTable()
         {
             int ind = 0;
-            for (float targetX = 0f; targetX < 255f; targetX += 1f)
+            for (float targetX = 0f; targetX <= 255f; targetX += 1f)
             {
                 float tLow = 0f;
                 float tHigh = 1f;

@@ -246,5 +246,11 @@ namespace RGBToCMYKConvertor
                 }
             }
         }
+
+        private void generateButton_Click(object sender, EventArgs e)
+        {
+            imageBase = new ImageBase(curves, originalPictureBox.Width, originalPictureBox.Height);
+            InvalidateImages();
+        }
     }
 }

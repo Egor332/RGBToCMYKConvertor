@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Security.Cryptography.Pkcs;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,6 +26,18 @@ namespace RGBToCMYKConvertor.Displays
             yellow = new Bitmap(original.Width, original.Height);
             black = new Bitmap(original.Width, original.Height);
             curves = cur;
+            ResetBitmaps();
+        }
+
+        public ImageBase(Dictionary<string, BezierCurve> cur, int width, int height)
+        {
+            curves = cur;
+            original = new Bitmap(width, height);
+            generateBitmap(original);
+            cyan = new Bitmap(original.Width, original.Height);
+            magenta = new Bitmap(original.Width, original.Height);
+            yellow = new Bitmap(original.Width, original.Height);
+            black = new Bitmap(original.Width, original.Height);
             ResetBitmaps();
         }
 
@@ -91,6 +104,31 @@ namespace RGBToCMYKConvertor.Displays
 
         }
 
+        private Color HSV2RGB(double hue, double saturation, double value)
+        {
+            int hi = Convert.ToInt32(Math.Floor(hue / 60)) % 6;
+            double f = hue / 60 - Math.Floor(hue / 60);
+
+            value = value * 255;
+            int v = Convert.ToInt32(value);
+            int p = Convert.ToInt32(value * (1 - saturation));
+            int q = Convert.ToInt32(value * (1 - f * saturation));
+            int t = Convert.ToInt32(value * (1 - (1 - f) * saturation));
+
+            if (hi == 0)
+                return Color.FromArgb(255, v, t, p);
+            else if (hi == 1)
+                return Color.FromArgb(255, q, v, p);
+            else if (hi == 2)
+                return Color.FromArgb(255, p, v, t);
+            else if (hi == 3)
+                return Color.FromArgb(255, p, q, v);
+            else if (hi == 4)
+                return Color.FromArgb(255, t, p, v);
+            else
+                return Color.FromArgb(255, v, p, q);
+        }
+
         public void SaveAll(string selectedPath)
         {
             string original = System.IO.Path.Combine(selectedPath, "original.jpg");
@@ -103,6 +141,46 @@ namespace RGBToCMYKConvertor.Displays
             this.magenta.Save(magenta);
             this.yellow.Save(yellow);
             this.black.Save(black);
+        }
+
+        private void generateBitmap(Bitmap b)
+        {
+            int h = b.Height;
+            int w = b.Width;
+
+            for (int j = 0; j < w; j++)
+            {
+                for (int k = 0; k < h; k++)
+                {
+                    b.SetPixel(j, k, Color.White);
+                }
+            }
+
+            int columnWidth = 20;
+            int i = 0;
+            while (i < w/2)
+            {
+                for (int j = 0; j < columnWidth; j++)
+                {
+                    for (int k = 0; k < h; k++) 
+                    {
+                        b.SetPixel(i + j, k, Color.FromArgb(0, 0, 0));
+                    }
+                }
+                i += 2 * columnWidth;
+                columnWidth--;
+            }
+
+            for (int j = w/2; j < w; j++)
+            {
+                for (int k = 0; k < h; k++)
+                {
+                    b.SetPixel(j, k, HSV2RGB(360 * (j - w / 2) / (w / 2), ((double)1 - ((double)k / (double)h)), 1));
+                }
+            }
+
+
+
         }
         
     }

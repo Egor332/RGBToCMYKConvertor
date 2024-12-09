@@ -47,6 +47,7 @@
             magentaPictureBox = new PictureBox();
             yellowPictureBox = new PictureBox();
             blackPictureBox = new PictureBox();
+            generateButton = new Button();
             ((System.ComponentModel.ISupportInitialize)curvePictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)originalPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cyanPictureBox).BeginInit();
@@ -270,11 +271,22 @@
             blackPictureBox.TabStop = false;
             blackPictureBox.Paint += blackPictureBox_Paint;
             // 
+            // generateButton
+            // 
+            generateButton.Location = new Point(304, 713);
+            generateButton.Name = "generateButton";
+            generateButton.Size = new Size(127, 64);
+            generateButton.TabIndex = 21;
+            generateButton.Text = "Generate";
+            generateButton.UseVisualStyleBackColor = true;
+            generateButton.Click += generateButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1249, 813);
+            Controls.Add(generateButton);
             Controls.Add(blackPictureBox);
             Controls.Add(yellowPictureBox);
             Controls.Add(magentaPictureBox);
@@ -328,5 +340,6 @@
         private PictureBox magentaPictureBox;
         private PictureBox yellowPictureBox;
         private PictureBox blackPictureBox;
+        private Button generateButton;
     }
 }
